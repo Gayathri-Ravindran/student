@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Add the Bootstrap CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Add jQuery (required for Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<!-- Add Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="https://fonts.googlepis.com/css2?family=Roboto:wgt@100&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1cedb2c7c2.js" crossorigin="anonymous"></script>
+
+    <meta name="description" content="{% block matadescription %}{% endblock %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<div class="container">
+    {% include 'nav.html' %}
+    {% block content %}
+    {% endblock %}
+</div>
+
+<script src="{% static 'js/popper.min.js ' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

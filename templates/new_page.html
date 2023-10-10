@@ -1,0 +1,23 @@
+<!-- new_page.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-12">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+
+            <p>There are tasks prior to purchasing to be conducted such as knowing the requirements of the business and the manufacturing process, knowing the providers in depth, always assessing that their quality and costs are best suited to the business. Start exploring purchasing in this course.</p>
+
+            <!-- Form with a button to go to the order_form -->
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Enroll Now</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

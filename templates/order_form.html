@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+   Order Form
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">School Store</a>
+            </nav>
+
+            <h1>Order Form</h1>
+            {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+          <b>  <li>{% if message.tags %} {% endif %}{{ message }}</li></b>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+            <!-- Display order form using Django template tags -->
+            <form method="post">
+                {% csrf_token %}
+
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="username">Name</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+
+                <!-- DOB -->
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" class="form-control" id="dob" name="dob" required>
+                </div>
+
+                <!-- Age -->
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" class="form-control" id="age" name="age" required>
+                </div>
+
+                <!-- Gender -->
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select class="form-control" id="gender" name="gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <!-- Phone Number -->
+                <div class="form-group">
+                <label for="phone">Enter a phone number:</label><br><br>
+                <input type="tel" id="phone" name="phone" placeholder="123-45-678" pattern="[0-9]{10}" required><br><br>
+                </div>
+
+                <!-- Mail ID -->
+                <div class="form-group">
+                    <label for="mail_id">Mail ID</label>
+                    <input type="email" class="form-control" id="mail_id" name="mail_id" required>
+                </div>
+
+
+                <!-- Address -->
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea class="form-control" id="address" name="address" rows="4" required></textarea>
+                </div>
+
+<!-- Department dropdown -->
+<div class="form-group">
+    <label for="department">Department:</label>
+    <select class="form-control" id="department" name="department">
+        <option value="1">Select Department</option>
+        <option value="1">Computer Science</option>
+        <option value="2">Commerce</option>
+        <option value="3">English</option>
+        <option value="4">Management</option>
+        <option value="5">Bio-Science</option>
+    </select>
+</div>
+
+<!-- Course dropdown (dependent on department) -->
+<div class="form-group">
+    <label for="course">Course:</label>
+    <select class="form-control" id="course" name="course">
+    </select>
+</div>
+
+<script type="text/javascript">
+    // Get references to the department and course dropdowns
+    const departmentDropdown = document.getElementById('department');
+    const courseDropdown = document.getElementById('course');
+
+    // Define a mapping of departments to courses
+    const departmentCourses = {
+      '1': ['Bsc Computer science', 'BCA', 'MCA', 'Msc Computer Science'],
+        '2': ['Bcom', 'Mcom', 'CA', 'ACCA', 'CMA'],
+        '3': ['BA English', 'MA English'],
+        '4': ['BBA','BBM','MBA'],
+        '5': ['Biochemistry', 'Plant Biotechnology', 'Foodscience and Technology']
+};
+
+
+    // Function to update the course dropdown based on the selected department
+    function updateCourseDropdown() {
+        const selectedDepartment = departmentDropdown.value;
+        const courses = departmentCourses[selectedDepartment] || [];
+
+        // Clear existing options
+        courseDropdown.innerHTML = '';
+
+        // Add new options based on the selected department
+        courses.forEach(courseName => {
+            const option = document.createElement('option');
+            option.value = courseName;
+            option.textContent = courseName;
+            courseDropdown.appendChild(option);
+        });
+    }
+
+    // Attach an event listener to the department dropdown
+    departmentDropdown.addEventListener('change', updateCourseDropdown);
+
+    // Initial call to populate the course dropdown based on the initial department selection
+    updateCourseDropdown();
+</script>
+
+
+                <!-- Purpose dropdown -->
+                <div class="form-group">
+                    <label for="purpose">Purpose</label>
+                    <select class="form-control" id="purpose" name="purpose" required>
+                        <option value="Enquiry">Enquiry</option>
+                        <option value="Place Order">Place Order</option>
+                        <option value="Return">Return</option>
+                    </select>
+                </div>
+                <!-- checkbox -->
+                <div class="form-group">
+                    <label for="material">Material</label><br>
+                    <input type="checkbox" id="n1">
+                    <label for="n1"> Pen</label><br>
+                    <input type="checkbox" id="n2">
+                    <label for="n2"> Pencil</label><br>
+                    <input type="checkbox" id="n3">
+                    <label for="n3"> Book</label><br>
+                    <input type="checkbox" id="n4">
+                    <label for="n4"> Paper</label><br>
+
+                    </select>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary">Submit</button>
+                 <div class="row justify-content-center mt-3">
+        <div class="col-md-6">
+            <p><a href="{% url 'schoolapp:home' %}">Return to Home Page</a></p>
+        </div>
+    </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}

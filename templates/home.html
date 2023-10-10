@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+</form>
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <center><h1>Welcome</h1></center>
+            <div class="card text-center" style="min-width: 18rem;">
+                <a href="{% url 'schoolapp:home' %}">
+                    <img src="{% static 'img/pic.png' %}" alt="logimage" class="card-img-top">
+                </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+           <b><center><heading>OUR VISION </heading></center></b>
+                <p>“To be a global icon in quality education, research, innovation, and entrepreneurship for a sustainable future. To provide a conducive learning environment that nurtures and develops young people as value-driven, professionally competent and responsible global citizens”</p>
+                <center><a href="{% url 'schoolapp:login' %}" class="btn btn-primary">Login</a></center>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
